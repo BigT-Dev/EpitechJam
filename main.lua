@@ -1,13 +1,22 @@
-require "inventory"
+require "flashlight"
 
 function love.load()
-    inventory.load()
-end
-
-function love.update(dt)
-    inventory.update(dt)
+    flashlight = Flashlight
+    flashlight:load(love.graphics.getWidth() / 2, love.graphics.getHeight() / 2)
+    background = love.graphics.newImage("assets/background.png")
 end
 
 function love.draw()
-    inventory.draw()
+    love.graphics.draw(background, -500, -500)
+    flashlight:draw()
+end
+
+function love.update(dt)
+    flashlight:update(dt)
+end
+
+function love.keypressed(key)
+    if key == "space" then
+        flashlight:toggle()
+    end
 end
