@@ -7,7 +7,7 @@ function love.load()
 end
 
 function love.draw()
-    love.graphics.draw(background, -500, -500)
+    love.graphics.draw(background, -500, -600)
     flashlight:draw()
 end
 
@@ -18,5 +18,8 @@ end
 function love.keypressed(key)
     if key == "space" then
         flashlight:toggle()
+    end
+    if key == "t" then
+        flashlight:thunder()
     end
 end
