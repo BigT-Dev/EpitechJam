@@ -1,20 +1,27 @@
 local mouse = {}
 local player =  {}
 
+
 function love.player()
 
-    player.spritesheet = love.graphics.newImage("sprite/Thanatos.png")
+    player[1] = ("sprite/Thanatos.png")
+    player[2] = ("sprite/Chinese.png")
+    player[3] = ("sprite/DCs_Guardian.png")
+    player[4] = ("sprite/Master_Legend.png")
+
+
+    player.spritesheet = love.graphics.newImage(player[4])
     player.x = 1321
-    player.y = 1234
+    player.y = 1400
     player.grid = animation.newGrid( 64, 64, player.spritesheet:getWidth(), player.spritesheet:getHeight())
     player.animations = {}
-    player.animations.down = animation.newAnimation (player.grid('1-2', 1),  0.3)
+    player.animations.down = animation.newAnimation (player.grid('1-2', 1),  0.25)
 
 end
 
 function love.load ()
     love.window.setMode(1920, 1080)
-    love.window.setTitle("Last Day in tek")
+    love.window.setTitle("LAST DAY IN TEK")
 
     animation = require 'librairies/animation'
 
@@ -22,53 +29,57 @@ function love.load ()
     cam = camera()
 
     love.player()
-    background = love.graphics.newImage("sprite/Map2.png")
+    background = love.graphics.newImage("sprite/Background.png")
 end
 
 function love.angle()
     local mouseX, mouseY = love.mouse.getPosition()
-    local angle = math.atan2(mouseY - player.y, mouseX - player.x)
+    local angle = math.atan2(player.y - mouseY, player.x - mouseX ) * 3
     player.animations.down:draw(player.spritesheet, player.x, player.y, angle, nil, nil, 32, 32)
 end
 
-function love.cammove()
+function love.camtrack()
 
     local width = love.graphics.getWidth()
     local Height = love.graphics.getHeight()
 
-    if cam.x > (2 * width/4) then
-        cam.x = (2 * width/4)
+    if cam.x > (1.9 * width/4) then
+        cam.x = (1.9 * width/4)
     end
 
-    if cam.x < (width/4) then
-        cam.x = (width/4)
+    if cam.x < (width/3.7) then
+        cam.x = (width/3.7)
     end
 
-    if cam.y < (Height/4) then
-        cam.y = (Height/4)
+    if cam.y < (1.7 * -Height/4) then
+        cam.y = (1.7 * -Height/4)
+    end
+
+    if cam.y > (4.7 * Height/4) then
+        cam.y = (4.7 * Height/4)
     end
 
 end
 
 function love.update(dt)
     if love.keyboard.isDown("left") then
-        player.x = player.x - 60 * 0.5
+        player.x = player.x - 60 * 0.07
     end
     if love.keyboard.isDown("right") then
-        player.x = player.x + 60 * 0.5
+        player.x = player.x + 60 * 0.07
     end
     if love.keyboard.isDown("up") then
-        player.y = player.y - 60 * 0.5
+        player.y = player.y - 60 * 0.07
     end
     if love.keyboard.isDown("down") then
-        player.y = player.y + 60 * 0.5
+        player.y = player.y + 60 * 0.07
     end
     player.animations.down:update(dt)
 
-    love.angle()
     cam:lookAt(player.x, player.y)
     cam.scale = 2
-    love.cammove()
+    love.camtrack()
+    love.angle()
 
 end
 
