@@ -8,6 +8,8 @@ function collision.load()
   -- Conversion du contenu du fichier JSON en tableau Lua
   local data = json.decode(contents)
   -- Création des objets de test
+  player = {x = 1321, y = 2134, width = 32, height = 32}
+  s_player = love.graphics.newImage("sprite/Thanatos.png")
   rects = {}
   for i = 1, #data do
       local rect = {x = data[i].x, y = data[i].y, width = data[i].width, height = data[i].height}
@@ -40,12 +42,21 @@ function collision.update(dt)
 end
 
 function collision.draw()
+
+  local mouseX, mouseY = love.mouse.getPosition()
+
+  -- Position relative du joueur par rapport à l'écran
+  local posPlayerRelativeX = love.graphics.getWidth() / 2
+  local posPlayerRelativeY = love.graphics.getHeight() / 2
+  mouseX = mouseX
+  mouseY = mouseY
+
+  angle = math.atan2(mouseY - posPlayerRelativeY, mouseX - posPlayerRelativeX)
+
   cam:attach()
     love.graphics.draw(s_map, 0, 0, 0, 1, 1)
-    --dessin des rectangles de test
-    love.graphics.setColor(255, 125, 125)
-    love.graphics.rectangle("fill", player.x, player.y, player.width, player.height)
-    -- flashlight.draw()
+    love.graphics.draw(s_player, player.x, player.y, angle, 1, 1, 16, 16)
+    flashlight.draw()
   cam:detach()
 end
 
