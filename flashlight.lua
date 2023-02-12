@@ -20,31 +20,42 @@ end
 
 
 function flashlight:draw()
-    if (light.isOn) then
+    local posShaderx = player.x - love.graphics.getWidth() / 2
+    local posShadery = player.y - love.graphics.getHeight() / 2
+
+    local posLightx = player.x + player.width / 2
+    local posLighty = player.y + player.height / 2
+
+    if light.isOn then
         love.graphics.stencil(function()
-            love.graphics.draw(light.lightImage, light.x, light.y, light.angle, 4, 1, 0, light.lightImage:getHeight() / 2)
+            love.graphics.draw(light.lightImage, posLightx, posLighty, light.angle, 4, 1, 0, light.lightImage:getHeight() / 2)
         end, "replace", 1)
         love.graphics.setStencilTest("equal", 0)
-    elseif (light.isThundering == false) then
-        love.graphics.setColor(0, 0, 0, 1)
-        love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
-        love.graphics.setColor(1, 1, 1, 1)
-    end
-    if (light.isThundering == false) then
         love.graphics.setShader(blackShader)
-        love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
+        love.graphics.rectangle("fill", posShaderx, posShadery, love.graphics.getWidth(), love.graphics.getHeight())
         love.graphics.setShader()
         love.graphics.setStencilTest()
+    else
+        love.graphics.setColor(0, 0, 0, 0.9436)
+        love.graphics.rectangle("fill", posShaderx, posShadery, love.graphics.getWidth(), love.graphics.getHeight())
+        love.graphics.setColor(1, 1, 1, 1)
     end
-    light.isThundering = false
 end
-
 
 function flashlight:update(dt)
     local mouseX, mouseY = love.mouse.getPosition()
-    light.x = player.x
-    light.y = player.y
-    light.angle = math.atan2(mouseY - light.y, mouseX - light.x)
+
+    -- Position relative du joueur par rapport à l'écran
+    local posPlayerRelativeX = player.x
+    local posPlayerRelativeY = player.y
+    mouseX = mouseX +posPlayerRelativeX
+    mouseY = mouseY + posPlayerRelativeY
+
+    print(posPlayerRelativeX, posPlayerRelativeY, mouseX, mouseY)
+
+    -- Calcule l'angle entre la position relative du joueur et la position de la souris
+    local angle = math.atan2(mouseY - posPlayerRelativeY, mouseX - posPlayerRelativeX)
+    light.angle = angle
 end
 
 function flashlight:thunder()

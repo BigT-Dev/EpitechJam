@@ -59,6 +59,7 @@ function collision.draw()
     --dessin des rectangles de test
     love.graphics.setColor(255, 125, 125)
     love.graphics.rectangle("fill", player.x, player.y, player.width, player.height)
+    flashlight.draw()
   cam:detach()
 end
 

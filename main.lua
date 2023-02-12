@@ -18,15 +18,10 @@ end
 function love.draw()
     -- inventory.draw()
     collision.draw()
-    flashlight.draw()
-    flashlight:draw()
 end
 
 function love.keypressed(key)
     if key == "space" then
         flashlight:toggle()
     end
-    -- if key == "t" then
-    --     flashlight:thunder()
-    -- end
 end
