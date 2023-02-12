@@ -46,16 +46,12 @@ function flashlight:update(dt)
     local mouseX, mouseY = love.mouse.getPosition()
 
     -- Position relative du joueur par rapport à l'écran
-    local posPlayerRelativeX = player.x
-    local posPlayerRelativeY = player.y
-    mouseX = mouseX + posPlayerRelativeX
-    mouseY = mouseY + posPlayerRelativeY
+    local posPlayerRelativeX = love.graphics.getWidth() / 2
+    local posPlayerRelativeY = love.graphics.getHeight() / 2
+    mouseX = mouseX
+    mouseY = mouseY
 
-    print(posPlayerRelativeX, posPlayerRelativeY, mouseX, mouseY)
-
-    -- Calcule l'angle entre la position relative du joueur et la position de la souris
-    local angle = math.atan2(mouseY - posPlayerRelativeY, mouseX - posPlayerRelativeX)
-    light.angle = angle
+    light.angle = math.atan2(mouseY - posPlayerRelativeY, mouseX - posPlayerRelativeX)
 end
 
 function flashlight:thunder()
