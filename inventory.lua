@@ -1,5 +1,7 @@
 inventory = {}
 
+local load_music = love.audio.newSource("sounds/mouseclick.mp3", "static")
+
 function inventory.load()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Servietsky")
@@ -34,6 +36,8 @@ function inventory.load()
         ["Nivea"] = false,
         ["Rtx"] = false
     }
+
+    load_music:setLooping(false)
 end
 
 function inventory.update(dt)
@@ -69,6 +73,11 @@ function inventory.update(dt)
         InvSelect["Nerf"] = true
     else
         InvSelect["Nerf"] = false
+    end
+    -- If object is took
+    if love.keyboard.isDown("e") then
+        InvState["Rtx"] = true
+        load_music:play()
     end
 end
 
@@ -117,21 +126,26 @@ function inventory.draw()
     if love.mouse.isDown(1) then
         if InvSelect["Rtx"] then
             love.graphics.draw(s_invRtx, 0, 0)
+            load_music:play()
         end
         if InvSelect["Deo"] then
             love.graphics.draw(s_invDeo, 0, 0)
+            load_music:play()
         end
         if InvSelect["Monster"] then
             love.graphics.draw(s_invMonster, 0, 0)
+            load_music:play()
         end
         if InvSelect["Bullets"] then
             love.graphics.draw(s_invBullets, 0, 0)
         end
         if InvSelect["Nivea"] then
             love.graphics.draw(s_invNivea, 0, 0)
+            load_music:play()
         end
         if InvSelect["Nerf"] then
             love.graphics.draw(s_invNerf, 0, 0)
+            load_music:play()
         end
     end
 end
