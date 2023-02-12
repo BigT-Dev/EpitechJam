@@ -1,6 +1,6 @@
 inventory = {}
 
-local load_music = love.audio.newSource("assets/sfx//mouse_click.mp3", "static")
+local mouse_click = love.audio.newSource("assets/sfx//mouse_click.mp3", "static")
 
 InvState = {
     ["ammo"] = false,
@@ -51,7 +51,7 @@ function inventory.load()
     Rtx_desc = love.graphics.newImage("assets/items/CG_desc.png")
     font = love.graphics.newFont("assets/font/Minecraft.ttf", 24)
     love.graphics.setFont(font)
-    load_music:setLooping(false)
+    mouse_click:setLooping(false)
 end
 
 function inventory.update(dt)
@@ -97,74 +97,38 @@ function inventory.desc_draw()
     if mouseX >= 789 and mouseX < 900 and mouseY > 370 and mouseY < 500
     and InvState["Rtx"] then
         love.graphics.draw(Rtx_desc, 793, 654)
+        love.graphics.draw(s_invSelect1)
     else
     end
     if mouseX >= 906 and mouseX < 1015 and mouseY > 370 and mouseY < 500
     and InvState["Deo"] then
         love.graphics.draw(Deo_desc, 793, 654)
+        love.graphics.draw(s_invSelect2)
     else
     end
     if mouseX >= 1021 and mouseX < 1130 and mouseY > 370 and mouseY < 500
     and InvState["Monster"] then
         love.graphics.draw(Monster_desc, 793, 654)
+        love.graphics.draw(s_invSelect3)
     else
     end
     if mouseX >= 789 and mouseX < 900 and mouseY > 504 and mouseY < 633
     and InvState["ammo"] then
         love.graphics.draw(Ammo_desc, 793, 654)
+        love.graphics.draw(s_invSelect4)
     else
     end
     if mouseX >= 906 and mouseX < 1015 and mouseY > 504 and mouseY < 633
     and InvState["Nivea"] then
         love.graphics.draw(Nivea_desc, 793, 654)
+        love.graphics.draw(s_invSelect5)
     else
     end
     if mouseX >= 1021 and mouseX < 1130 and mouseY > 504 and mouseY < 633
     and InvState["Nerf"] then
         love.graphics.draw(Nerf_desc, 793, 654)
+        love.graphics.draw(s_invSelect6)
     else
-    end
-end
-
-function inventory.mouse_draw()
-    -- if the left mouse button is pressed, draw the selected object
-    if love.mouse.isDown(1) then
-        if InvSelect["Rtx"] then
-            love.graphics.draw(s_invRtx, 0, 0)
-            if not load_music:isPlaying() then
-                love.audio.play(load_music)
-            end
-        end
-        if InvSelect["Deo"] then
-            love.graphics.draw(s_invDeo, 0, 0)
-            if not load_music:isPlaying() then
-                love.audio.play(load_music)
-            end
-        end
-        if InvSelect["Monster"] then
-            love.graphics.draw(s_invMonster, 0, 0)
-            if not load_music:isPlaying() then
-                love.audio.play(load_music)
-            end
-        end
-        if InvSelect["ammo"] then
-            love.graphics.draw(s_invammo, 0, 0)
-            if not load_music:isPlaying() then
-                love.audio.play(load_music)
-            end
-        end
-        if InvSelect["Nivea"] then
-            love.graphics.draw(s_invNivea, 0, 0)
-            if not load_music:isPlaying() then
-                love.audio.play(load_music)
-            end
-        end
-        if InvSelect["Nerf"] then
-            love.graphics.draw(s_invNerf, 0, 0)
-            if not load_music:isPlaying() then
-                love.audio.play(load_music)
-            end
-        end
     end
 end
 
@@ -195,6 +159,5 @@ function inventory.draw()
         love.graphics.draw(s_invNerf, 0, 0)
         love.graphics.print(InvNbObj["Nerf"], 1113, 515)
     end
-    inventory.mouse_draw()
     inventory.desc_draw()
 end
