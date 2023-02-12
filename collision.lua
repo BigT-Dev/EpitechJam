@@ -27,6 +27,19 @@ function collision.update(dt)
   local newY = player.y
 
   --gestion des déplacements du cercle avec les flèches du clavier
+  if love.keyboard.isDown("d") then
+      newX = player.x + 400 * dt
+  end
+  if love.keyboard.isDown("q") then
+    newX = player.x - 400 * dt
+  end
+  if love.keyboard.isDown("z") then
+    newY = player.y - 400 * dt
+  end
+  if love.keyboard.isDown("s") then
+    newY = player.y + 400 * dt
+  end
+
   for i = 1, #rects do
     if checkCollision(newX, newY, player.width, player.height, rects[i].x, rects[i].y, rects[i].width, rects[i].height) then
         --si il y a collision, on ne déplace pas le cercle
