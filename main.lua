@@ -6,13 +6,13 @@ function love.load()
     love.window.setTitle("Servietsky")
     -- inventory.load()
     collision.load()
-    flashlight.load()
+    -- flashlight.load()
 end
 
 function love.update(dt)
     -- inventory.update(dt)
     collision.update(dt)
-    flashlight:update(dt)
+    -- flashlight:update(dt)
 end
 
 function love.draw()
