@@ -19,7 +19,6 @@ function love.draw()
     -- inventory.draw()
     collision.draw()
     flashlight.draw()
-    love.graphics.draw(background, -500, -600)
     flashlight:draw()
 end
 

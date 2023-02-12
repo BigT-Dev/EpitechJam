@@ -6,11 +6,11 @@ local blackShader = love.graphics.newShader([[
     }
 ]])
 
-function flashlight:load(x, y)
+function flashlight:load()
 
     light = {}
-    light.x = x
-    light.y = y
+    light.x = player.x
+    light.y = player.y
     light.lightImage = love.graphics.newImage("assets/light.png")
     light.isOn = true
     light.angle = 0
@@ -42,9 +42,9 @@ end
 
 function flashlight:update(dt)
     local mouseX, mouseY = love.mouse.getPosition()
+    light.x = player.x
+    light.y = player.y
     light.angle = math.atan2(mouseY - light.y, mouseX - light.x)
-    light.x = love.graphics.getWidth() / 2
-    light.y = love.graphics.getHeight() / 2
 end
 
 function flashlight:thunder()
