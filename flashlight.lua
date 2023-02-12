@@ -48,7 +48,7 @@ function flashlight:update(dt)
     -- Position relative du joueur par rapport à l'écran
     local posPlayerRelativeX = player.x
     local posPlayerRelativeY = player.y
-    mouseX = mouseX +posPlayerRelativeX
+    mouseX = mouseX + posPlayerRelativeX
     mouseY = mouseY + posPlayerRelativeY
 
     print(posPlayerRelativeX, posPlayerRelativeY, mouseX, mouseY)
