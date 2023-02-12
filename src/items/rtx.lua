@@ -1,5 +1,7 @@
 rtx = {}
 
+local pick = love.audio.newSource("assets/sfx/item_pick1.mp3", "static")
+
 local animation_e = {
   love.graphics.newImage("assets/items/interact_frame_1.png"),
   love.graphics.newImage("assets/items/interact_frame_2.png")
@@ -86,6 +88,9 @@ function rtx.update(dt)
                             rtx_list[i]["is_find"] = true
                             InvState["Rtx"] = true
                             InvNbObj["Rtx"] = InvNbObj["Rtx"] + 1
+                            if not pick:isPlaying() then
+                              love.audio.play(pick)
+                            end
     end
     if (checkrange(player.x, player.y, 100, 100, rtx_list[i]["x"],
     rtx_list[i]["y"], rtx_list[i]["hitbox_x"],

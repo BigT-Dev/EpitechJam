@@ -1,5 +1,7 @@
 deo = {}
 
+local pick = love.audio.newSource("assets/sfx/item_pick2.mp3", "static")
+
 local animation_m = {
   love.graphics.newImage("assets/items/interact_frame_1.png"),
   love.graphics.newImage("assets/items/interact_frame_2.png")
@@ -86,6 +88,9 @@ function deo.update(dt)
                             deodorant_list[i]["is_find"] = true
                             InvState["Deo"] = true
                             InvNbObj["Deo"] = InvNbObj["Deo"] + 1
+                            if not pick:isPlaying() then
+                              love.audio.play(pick)
+                            end
     end
     if (checkrange(player.x, player.y, 100, 100, deodorant_list[i]["x"],
     deodorant_list[i]["y"], deodorant_list[i]["hitbox_x"],

@@ -1,5 +1,7 @@
 nerf = {}
 
+local pick = love.audio.newSource("assets/sfx/nerf_pick.mp3", "static")
+
 local animation_m = {
   love.graphics.newImage("assets/items/interact_frame_1.png"),
   love.graphics.newImage("assets/items/interact_frame_2.png")
@@ -86,6 +88,9 @@ function nerf.update(dt)
                             nerf_list[i]["is_find"] = true
                             InvState["Nerf"] = true
                             InvNbObj["Nerf"] = InvNbObj["Nerf"] + 1
+                            if not pick:isPlaying() then
+                              love.audio.play(pick)
+                            end
     end
     if (checkrange(player.x, player.y, 100, 100, nerf_list[i]["x"],
     nerf_list[i]["y"], nerf_list[i]["hitbox_x"],

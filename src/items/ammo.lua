@@ -1,5 +1,7 @@
 ammo = {}
 
+local pick = love.audio.newSource("assets/sfx/item_pick3.mp3", "static")
+
 local animation_m = {
   love.graphics.newImage("assets/items/interact_frame_1.png"),
   love.graphics.newImage("assets/items/interact_frame_2.png")
@@ -58,6 +60,7 @@ ammo_3 = {
       love.graphics.setColor(255, 255, 255, 0)
       love.graphics.rectangle("line", self["x"], self["y"],
         self["hitbox_x"], self["hitbox_y"])
+      pick:setLooping(false)
   end,
 }
 
@@ -86,6 +89,9 @@ function ammo.update(dt)
                             ammo_list[i]["is_find"] = true
                             InvState["ammo"] = true
                             InvNbObj["Ammo"] = InvNbObj["Ammo"] + 1
+                            if not pick:isPlaying() then
+                              love.audio.play(pick)
+                            end
     end
     if (checkrange(player.x, player.y, 100, 100, ammo_list[i]["x"],
     ammo_list[i]["y"], ammo_list[i]["hitbox_x"],

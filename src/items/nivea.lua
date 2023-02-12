@@ -1,5 +1,7 @@
 nivea = {}
 
+local pick = love.audio.newSource("assets/sfx/item_pick1.mp3", "static")
+
 local animation_m = {
   love.graphics.newImage("assets/items/interact_frame_1.png"),
   love.graphics.newImage("assets/items/interact_frame_2.png")
@@ -86,6 +88,9 @@ function nivea.update(dt)
                             nivea_list[i]["is_find"] = true
                             InvState["Nivea"] = true
                             InvNbObj["Nivea"] = InvNbObj["Nivea"] + 1
+                            if not pick:isPlaying() then
+                              love.audio.play(pick)
+                            end
     end
     if (checkrange(player.x, player.y, 100, 100, nivea_list[i]["x"],
     nivea_list[i]["y"], nivea_list[i]["hitbox_x"],
