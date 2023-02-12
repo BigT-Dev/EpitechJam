@@ -7,8 +7,6 @@ local blackShader = love.graphics.newShader([[
 ]])
 
 function Flashlight:load(x, y)
-    love.window.setMode(1080, 720)
-    love.window.setTitle("Servietsky")
 
     self.x = x
     self.y = y
