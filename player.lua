@@ -15,16 +15,16 @@ end
 
 function player.update(dt)
     if love.keyboard.isDown("left") then
-        player.x = player.x - 60 * 0.5
+        player.x = player.x - 400 * dt
     end
     if love.keyboard.isDown("right") then
-        player.x = player.x + 60 * 0.5
+        player.x = player.x + 400 * dt
     end
     if love.keyboard.isDown("up") then
-        player.y = player.y - 60 * 0.5
+        player.y = player.y - 400 * dt
     end
     if love.keyboard.isDown("down") then
-        player.y = player.y + 60 * 0.5
+        player.y = player.y + 400 * dt
     end
     player.animations.down:update(dt)
     collision.update(dt)
