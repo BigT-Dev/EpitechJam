@@ -2,15 +2,11 @@ animation = require 'libraries/animation'
 camera = require 'libraries/camera'
 local mouse = {}
 player = {x = 1321, y = 2134, width = 32, height = 32}
-player[1] = ("sprite/Thanatos.png")
-player[2] = ("sprite/Chinese.png")
-player[3] = ("sprite/DCs_Guardian.png")
-player[4] = ("sprite/Master_Legend.png")
 
 function player.load()
     cam = camera()
     player.player()
-    background = love.graphics.newImage("sprite/Map2.png")
+    background = love.graphics.newImage("sprite/Map.png")
 end
 
 function player.update(dt)

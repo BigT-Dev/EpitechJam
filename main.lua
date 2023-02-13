@@ -19,7 +19,7 @@ require("src/items/ammo")
 require("src/items/nerf")
 
 global_var.var = {
-    ["state"] = "game"
+    ["state"] = "loader"
 }
 
 InvState = {
