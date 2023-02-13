@@ -19,7 +19,7 @@ require("src/items/ammo")
 require("src/items/nerf")
 
 global_var.var = {
-    ["state"] = "game"
+    ["state"] = "loader"
 }
 
 InvState = {
@@ -40,6 +40,9 @@ end
 function love.update(dt)
     if love.keyboard.isDown("escape") then
         love.event.quit()
+    end
+    if drawMonster == false and drawDeo == false and drawNivea == false and drawRtx == false then
+        gameEnd = true
     end
     if global_var.var["state"] == "loader" then
         loader.update(dt)
