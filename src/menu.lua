@@ -1,7 +1,8 @@
 menu = {}
 
 local sfx = {
-    love.audio.newSource("sounds/loader/mouse_click.mp3", "static")
+    love.audio.newSource("sounds/loader/mouse_click.mp3", "static"),
+    love.audio.newSource("sounds/starter.mp3", "static")
 }
 
 local img = {
@@ -186,6 +187,7 @@ function menu.start(x, y)
     if x > var["start.x"] and x < var["start.x"] + 300 and y >
     var["start.y"] and y < var["start.y"] + 300 then
         sfx[1]:play()
+        sfx[2]:play()
         if var["index"] == 1 then
             global_var.var["state"] = "transition"
             var["is_start"] = true

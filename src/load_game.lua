@@ -25,9 +25,12 @@ function load_game.move_rect(dt)
 end
 
 function load_game.write_text_marvin(dt)
+    glob_sfx[3]:setLooping(true)
+
     if var["delay_timer_text"] > 0 then
         var["delay_timer_text"] = var["delay_timer_text"] - dt
       else
+        glob_sfx[3]:play()
         var["char_timer"] = var["char_timer"] + dt
         if var["char_timer"] >= 0.1 then
           var["char_index"] = var["char_index"] + 1
@@ -56,6 +59,7 @@ function load_game.update(dt)
     load_game.write_push(dt)
 
     if love.keyboard.isDown("e") then
+        glob_sfx[3]:stop()
         global_var.var["state"] = "game"
     end
 end

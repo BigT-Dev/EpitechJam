@@ -9,10 +9,6 @@ local img = {
     love.graphics.newImage("assets/loader/5_load.png")
 }
 
-local sounds = {
-    love.audio.newSource("sounds/loader/loading_theme_song.mp3", "static"),
-}
-
 local var = {
     ["elapsedTime"] = 0,
     ["transition_duration"] = 10,
@@ -23,14 +19,14 @@ local var = {
 
 
 function loader.load()
-    sounds[1]:setLooping(true)
-    sounds[1]:play()
+    glob_sfx[1]:setLooping(false)
+    glob_sfx[1]:play()
 end
 
 function loader.update(dt)
     var["elapsedTime"] = var["elapsedTime"] + dt
 
-    if var["elapsedTime"] >= 1.5 then
+    if var["elapsedTime"] >= 1 then
         loader.load()
     end
 
