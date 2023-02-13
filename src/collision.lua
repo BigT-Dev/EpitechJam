@@ -167,14 +167,8 @@ end
 
 function love.player()
 
-  player[1] = ("sprite/Thanatos.png")
-  player[2] = ("sprite/Chinese.png")
-  player[3] = ("sprite/DCs_Guardian.png")
-  player[4] = ("sprite/Master_Legend.png")
 
-
-  player.spritesheet = love.graphics.newImage(player[4])
-  player.grid = animation.newGrid(64, 64, player.spritesheet:getWidth(), player.spritesheet:getHeight())
+  player.grid = animation.newGrid(64, 64, spriteselect["select"]:getWidth(), spriteselect["select"]:getHeight())
   player.animations = {}
   player.animations.down = animation.newAnimation (player.grid('1-2', 1), 0.25)
 
@@ -183,7 +177,7 @@ end
 function love.angle()
   local mouseX, mouseY = love.mouse.getPosition()
   local angle = math.atan2(player.y - mouseY, player.x - mouseX ) * 2.5
-  player.animations.down:draw(player.spritesheet, player.x, player.y, angle, nil, nil, 32, 32)
+  player.animations.down:draw(spriteselect["select"], player.x, player.y, angle, nil, nil, 32, 32)
 end
 
 function love.camtrack()

@@ -1,5 +1,16 @@
 menu = {}
 
+spritesheet = {
+    love.graphics.newImage("sprite/DCs_Guardian.png"),
+    love.graphics.newImage("sprite/Master_Legend.png"),
+    love.graphics.newImage("sprite/Chinese.png"),
+    love.graphics.newImage("sprite/Thanatos.png")
+}
+
+spriteselect = {
+    ["select"] = spritesheet[1]
+}
+
 local sfx = {
     love.audio.newSource("sounds/loader/mouse_click.mp3", "static"),
     love.audio.newSource("sounds/starter.mp3", "static")
@@ -189,18 +200,22 @@ function menu.start(x, y)
         sfx[1]:play()
         sfx[2]:play()
         if var["index"] == 1 then
+            spriteselect["select"] = spritesheet[1]
             global_var.var["state"] = "transition"
             var["is_start"] = true
         end
         if var["index"] == 2 then
+            spriteselect["select"] = spritesheet[2]
             global_var.var["state"] = "transition"
             var["is_start"] = true
         end
         if var["index"] == 3 then
+            spriteselect["select"] = spritesheet[3]
             global_var.var["state"] = "transition"
             var["is_start"] = true
         end
         if var["index"] == 4 then
+            spriteselect["select"] = spritesheet[4]
             global_var.var["state"] = "transition"
             var["is_start"] = true
         end
