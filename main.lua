@@ -38,6 +38,9 @@ function love.load()
 end
 
 function love.update(dt)
+    if love.keyboard.isDown("escape") then
+        love.event.quit()
+    end
     if global_var.var["state"] == "loader" then
         loader.update(dt)
     elseif global_var.var["state"] == "menu" then

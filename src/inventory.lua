@@ -133,7 +133,7 @@ function inventory.desc_draw()
 end
 
 function inventory.draw()
-    love.graphics.clear(0, 1, 0)
+    love.graphics.clear(0.126, 0.109, 0.152)
     love.graphics.draw(s_inventory, 0, 0)
     if InvState["Rtx"] then
         love.graphics.draw(s_invRtx, 0, 0)
@@ -149,7 +149,6 @@ function inventory.draw()
     end
     if InvState["ammo"] then
         love.graphics.draw(s_invammo, 0, 0)
-        love.graphics.print(InvNbObj["Ammo"], 880, 515)
     end
     if InvState["Nivea"] then
         love.graphics.draw(s_invNivea, 0, 0)
@@ -157,7 +156,6 @@ function inventory.draw()
     end
     if InvState["Nerf"] then
         love.graphics.draw(s_invNerf, 0, 0)
-        love.graphics.print(InvNbObj["Nerf"], 1113, 515)
     end
     inventory.desc_draw()
 end

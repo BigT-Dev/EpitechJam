@@ -1,8 +1,17 @@
 collision = {}
 local json = require("dkjson")
 
+drawMonster = true
+drawNivea = true
+drawDeo = true
+drawRtx = true
+
 function collision.load()
   s_map = love.graphics.newImage("assets/Map.png")
+  s_monster1 = love.graphics.newImage("assets/items/Monster1.png")
+  s_nivea1 = love.graphics.newImage("assets/items/Nivea1.png")
+  s_deo1 = love.graphics.newImage("assets/items/Deo1.png")
+  s_rtx1 = love.graphics.newImage("assets/items/Rtx1.png")
   -- Lire le contenu du fichier JSON local
   local contents, size = love.filesystem.read("rectangles.json")
   -- Conversion du contenu du fichier JSON en tableau Lua
@@ -70,11 +79,68 @@ function collision.update(dt)
   cam:lookAt(player.x, player.y)
   love.camtrack()
   love.angle()
+
+
+  -- Prendre l'objet
+  if player.x > 1300 and player.x < 1450 and player.y > 1333 and player.y < 1500 then
+    if love.keyboard.isDown("e") then
+      if drawMonster == true then
+        InvState["Monster"] = true
+        InvNbObj["Monster"] = InvNbObj["Monster"] + 1
+      end
+      drawMonster = false
+    end
+  end
+  if player.x > 825 and player.x < 925 and player.y > 27 and player.y < 127 then
+    if love.keyboard.isDown("e") then
+      if drawDeo == true then
+        InvState["Deo"] = true
+        InvNbObj["Deo"] = InvNbObj["Deo"] + 1
+      end
+      drawDeo = false
+    end
+  end
+  if player.x > 75 and player.x < 175 and player.y > 2160 and player.y < 2260 then
+    if love.keyboard.isDown("e") then
+      if drawNivea == true then
+        InvState["Nivea"] = true
+        InvNbObj["Nivea"] = InvNbObj["Nivea"] + 1
+      end
+      drawNivea = false
+    end
+  end
+  if player.x > 45 and player.x < 145 and player.y > 110 and player.y < 210 then
+    if love.keyboard.isDown("e") then
+      if drawRtx == true then
+        InvState["Rtx"] = true
+        InvNbObj["Rtx"] = InvNbObj["Rtx"] + 1
+      end
+      drawRtx = false
+    end
+  end
+  InvState["Nerf"] = true
+  InvState["ammo"] = true
 end
 
 function collision.draw()
   cam:attach()
     love.graphics.draw(s_map, 0, 0, 0, 1, 1)
+
+
+    -- Draw objects
+    if drawMonster == true then
+      love.graphics.draw(s_monster1, 0, 0, 0, 1, 1)
+    end
+    if drawNivea == true then
+      love.graphics.draw(s_nivea1, 0, 0, 0, 1, 1)
+    end
+    if drawDeo == true then
+      love.graphics.draw(s_deo1, 0, 0, 0, 1, 1)
+    end
+    if drawRtx == true then
+      love.graphics.draw(s_rtx1, 0, 0, 0, 1, 1)
+    end
+
     love.angle()
     -- --dessin des rectangles de test
     -- love.graphics.setColor(255, 125, 125)
