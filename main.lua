@@ -100,11 +100,11 @@ function love.draw()
         collision.draw()
         if love.keyboard.isDown("c") then
             love.audio.play(inv_open)
-            InvState["All"]= true
+            InvState["All"] = true
         end
         if love.keyboard.isDown("x") then
             love.audio.play(inv_close)
-            InvState["All"]= false
+            InvState["All"] = false
         end
         if InvState["All"] then
             inventory.draw()
